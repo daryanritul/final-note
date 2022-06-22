@@ -1,8 +1,11 @@
 import React from 'react';
+
+import Auth from './Screens/Auth/Auth';
+
 const App = () => {
   return (
     <div>
-      <p>Hello World</p>
+      <Auth />
     </div>
   );
 };

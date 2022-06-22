@@ -15,3 +15,8 @@ html {
   background: var(--alpha);
   color: var(--light);
 }
+button,
+input {
+  font-family: 'Nunito', sans-serif;
+  color: var(--light);
+}
