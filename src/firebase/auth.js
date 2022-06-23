@@ -2,36 +2,23 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from 'firebase/auth';
 
 import { auth } from './firebaseconfig';
 
 export const authenticationSignUp = (email, password) => {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then(response => {
-      console.log('Success', response);
-    })
-    .catch(err => {
-      console.log('Failed', err);
-    });
+  return createUserWithEmailAndPassword(auth, email, password);
 };
 
 export const authenticationSignIn = (email, password) => {
-  signInWithEmailAndPassword(auth, email, password)
-    .then(response => {
-      console.log('Sign In Success', response);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  return signInWithEmailAndPassword(auth, email, password);
 };
 
 export const authenticationSignOut = () => {
-  signOut(auth)
-    .then(() => {
-      console.log('Sign out Success');
-    })
-    .catch(() => {
-      console.log('Failed', err);
-    });
+  return signOut(auth);
+};
+
+export const onAuthStateChange = () => {
+  return onAuthStateChanged(auth);
 };

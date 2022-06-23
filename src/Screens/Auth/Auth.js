@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import sty from './Auth.module.css';
 
 import { StickyNote2 } from '@styled-icons/material';
-import { authenticationSignUp } from '../../firebase/auth';
+import { authSignIn, authSignUp } from '../../store/actions/auth';
+import { context } from '../../store/store';
 
 const Auth = () => {
   const [authStatus, setAuthStatus] = useState(false);
@@ -11,10 +12,27 @@ const Auth = () => {
   const [password, setPassword] = useState('');
   const [cnfPassword, setCnfPassword] = useState('');
 
+  const { authDispatch: dispatch, authState: state } = useContext(context);
+
   const onSubmithandler = () => {
-    if (email && password && cnfPassword && password == cnfPassword) {
-      authenticationSignUp(email, password);
+    if (
+      authStatus &&
+      email &&
+      password &&
+      cnfPassword &&
+      password == cnfPassword
+    ) {
+      authSignUp(email, password)(dispatch);
+    } else if (email && password) {
+      authSignIn(email, password)(dispatch);
     }
+  };
+
+  const onChangeHandler = () => {
+    setAuthStatus(!authStatus);
+    setEmail('');
+    setPassword('');
+    setCnfPassword('');
   };
 
   return (
@@ -23,6 +41,7 @@ const Auth = () => {
         <StickyNote2 className={sty.icon} />
         final<span>note</span>
       </div>
+      <p> {state.loading ? 'Loading...' : ''}</p>
       <div className={sty.block}>
         <h3>{!authStatus ? 'Sign-In' : 'Sign-Up'}</h3>
         <p>(fill account credentials to proceed)</p>
@@ -48,7 +67,7 @@ const Auth = () => {
         </div>
         {authStatus && (
           <div className={sty.inputBox}>
-            <label className={sty.label}>Password</label>
+            <label className={sty.label}>Confirm Password</label>
             <input
               className={sty.input}
               placeholder="Confirm Password"
@@ -65,7 +84,7 @@ const Auth = () => {
       <div className={sty.footnote}>
         <p>
           {authStatus ? 'Already have an Account ' : "Don't have a account "}
-          <span onClick={() => setAuthStatus(!authStatus)}>
+          <span onClick={() => onChangeHandler()}>
             {authStatus ? 'Sign In' : 'Sign Up'}
           </span>
         </p>
