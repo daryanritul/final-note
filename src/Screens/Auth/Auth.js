@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import sty from './Auth.module.css';
 
 import { StickyNote2 } from '@styled-icons/material';
+import { authenticationSignUp } from '../../firebase/auth';
 
 const Auth = () => {
   const [authStatus, setAuthStatus] = useState(false);
@@ -11,7 +12,9 @@ const Auth = () => {
   const [cnfPassword, setCnfPassword] = useState('');
 
   const onSubmithandler = () => {
-    console.log(email, password, cnfPassword);
+    if (email && password && cnfPassword && password == cnfPassword) {
+      authenticationSignUp(email, password);
+    }
   };
 
   return (
