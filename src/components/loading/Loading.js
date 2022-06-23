@@ -1,7 +1,6 @@
 import React from 'react';
 
 import sty from './Loading.module.css';
-import { StickyNote2 } from '@styled-icons/material';
 
 const Loading = () => {
   return (

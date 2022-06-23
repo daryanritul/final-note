@@ -4,6 +4,7 @@ import { context } from './store/store';
 
 import authReducer from './store/reducers/authReducer';
 import notebookReducer from './store/reducers/notebookReducer';
+import { BrowserRouter } from 'react-router-dom';
 
 const authInitialState = {
   loading: false,
@@ -24,11 +25,13 @@ const RootApp = () => {
     notebookInitialState
   );
   return (
-    <context.Provider
-      value={{ authState, notebookState, authDispatch, notebookDispatch }}
-    >
-      <App />
-    </context.Provider>
+    <BrowserRouter>
+      <context.Provider
+        value={{ authState, notebookState, authDispatch, notebookDispatch }}
+      >
+        <App />
+      </context.Provider>
+    </BrowserRouter>
   );
 };
 

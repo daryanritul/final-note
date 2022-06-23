@@ -5,7 +5,7 @@ import sty from './Auth.module.css';
 import { StickyNote2 } from '@styled-icons/material';
 import { authSignIn, authSignUp } from '../../store/actions/auth';
 import { context } from '../../store/store';
-import Loading from '../../components/loading/Loading';
+import Loading from '../../components/Loading/Loading.js';
 
 const Auth = () => {
   const [authStatus, setAuthStatus] = useState(false);
