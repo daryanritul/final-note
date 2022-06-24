@@ -19,4 +19,20 @@ button,
 input {
   font-family: 'Nunito', sans-serif;
   color: var(--light);
+  border: 0px;
+}
+input:focus {
+  outline: none;
+}
+
+/* APP  CSS */
+.app {
+  width: 100vw;
+  height: 100vh;
+}
+
+.mainAppBody {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }

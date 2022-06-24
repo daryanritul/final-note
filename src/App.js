@@ -13,9 +13,16 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import Auth from './Screens/Auth/Auth';
 import Home from './Screens/Home/Home';
+import Editor from './Screens/Editor/Editor';
+import Loading from './components/Loading/Loading';
+import Topbar from './components/Topbar/Topbar';
+import Sidebar from './components/Sidebar/Sidebar';
+import Profile from './Screens/Profile/Profile';
+import Explore from './Screens/Explore/Explore';
+import Members from './Screens/Members/Members';
 
 const App = () => {
-  const { authDispatch: dispatch } = useContext(context);
+  const { authDispatch: dispatch, authState: state } = useContext(context);
   let navigate = useNavigate();
   useEffect(() => {
     dispatch({
@@ -37,14 +44,27 @@ const App = () => {
       }
     });
   }, []);
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="auth" element={<Auth />} />
-      </Routes>
-    </div>
-  );
+  if (state.loading) {
+    return <Loading />;
+  } else
+    return (
+      <div className="app">
+        <div className="header">
+          <Topbar />
+        </div>
+        <div className="mainAppBody">
+          <Sidebar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="auth" element={<Auth />} />
+            <Route path="editor" element={<Editor />} />
+            <Route path="members" element={<Members />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="explore" element={<Explore />} />
+          </Routes>
+        </div>
+      </div>
+    );
 };
 
 export default App;

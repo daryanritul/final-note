@@ -1,0 +1,15 @@
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--warning);
+  padding: 5px 15px;
+  letter-spacing: 2px;
+}
+.icon {
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+}
+.logo span {
+  color: var(--danger);
+}

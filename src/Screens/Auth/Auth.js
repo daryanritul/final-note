@@ -6,6 +6,7 @@ import { StickyNote2 } from '@styled-icons/material';
 import { authSignIn, authSignUp } from '../../store/actions/auth';
 import { context } from '../../store/store';
 import Loading from '../../components/Loading/Loading.js';
+import Logo from '../../components/Logo/Logo';
 
 const Auth = () => {
   const [authStatus, setAuthStatus] = useState(false);
@@ -45,10 +46,7 @@ const Auth = () => {
         <Loading />
       ) : (
         <div className={sty.auth}>
-          <div className={sty.logo}>
-            <StickyNote2 className={sty.icon} />
-            final<span>note</span>
-          </div>
+          <Logo />
           <p> {state.loading ? 'Loading...' : ''}</p>
           <div className={sty.block}>
             <h3>{!authStatus ? 'Sign-In' : 'Sign-Up'}</h3>

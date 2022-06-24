@@ -1,0 +1,96 @@
+@import '../../styles/variables.css';
+
+.bar {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid var(--charlie);
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  width: 15%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.searchBar {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+}
+.searchBox {
+  background: var(--light);
+  padding: 2px;
+  border-radius: 2px;
+  width: 50%;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+  transition: width 0.3s ease-in-out;
+}
+.searchBox:hover {
+  width: 60%;
+}
+.input {
+  background: transparent;
+  padding: 3px 5px;
+  font-size: 15px;
+  width: 90%;
+  color: var(--alpha);
+}
+.sIcon {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--alpha);
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 3px;
+}
+.profile {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--charlie);
+  margin: 8px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  transition: 300ms ease-in;
+}
+.profile:hover {
+  background: rgba(255, 255, 255, 0.104);
+  cursor: pointer;
+}
+.img {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.username {
+  font-weight: bold;
+  padding: 5px 10px;
+}
+.profileIcon {
+  width: 25px;
+  height: 25px;
+  background: var(--alpha);
+  border-radius: 60px;
+}
+.proBox {
+  display: flex;
+}
