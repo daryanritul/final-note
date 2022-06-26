@@ -1,0 +1,62 @@
+@import '../../styles//variables.css';
+.modal {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.482);
+  z-index: 99;
+}
+.edit {
+  background: var(--alpha);
+  padding: 20px;
+  width: 600px;
+  height: 500px;
+  border-radius: 5px;
+}
+.editBox {
+  display: flex;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--charlie);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+.editInput {
+  background: transparent;
+  border-bottom: 1px solid var(--light);
+  margin: 0px 10px;
+  width: 60%;
+  padding: 5px;
+}
+.option {
+  padding: 2px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--success);
+  color: var(--success);
+}
+.option:hover {
+  font-weight: bold;
+}
+
+.option.active {
+  background: var(--success);
+  color: #fff;
+}
+.editButtons {
+  display: flex;
+}
+.close {
+  background: var(--danger);
+  color: #fff;
+}

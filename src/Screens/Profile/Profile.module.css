@@ -1,0 +1,49 @@
+@import '../../styles/variables.css';
+
+.profile {
+  width: 100%;
+  position: relative;
+}
+.profileBox {
+  display: flex;
+  width: 100%;
+}
+.details {
+  width: 30%;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  height: 100%;
+}
+.image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  position: relative;
+}
+.img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 500px;
+  transition: 0.5s ease;
+}
+.img:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+h3 {
+  text-align: center;
+  padding: 10px;
+}
+h4 {
+  font-weight: normal;
+  text-align: center;
+}
+p {
+  text-align: center;
+  padding: 3px;
+}
