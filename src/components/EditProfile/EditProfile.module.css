@@ -34,6 +34,10 @@
   width: 60%;
   padding: 5px;
 }
+.editLabel {
+  display: flex;
+  align-items: center;
+}
 .option {
   padding: 2px 5px;
   border-radius: 5px;

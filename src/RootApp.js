@@ -9,7 +9,15 @@ import { BrowserRouter } from 'react-router-dom';
 const authInitialState = {
   loading: false,
   error: null,
-  data: {},
+  data: {
+    name: null,
+    email: null,
+    profileUrl: null,
+    bio: null,
+    designation: null,
+    gender: null,
+    dob: null,
+  },
 };
 
 const notebookInitialState = {

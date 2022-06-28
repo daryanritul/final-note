@@ -20,9 +20,11 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './Screens/Profile/Profile';
 import Explore from './Screens/Explore/Explore';
 import Members from './Screens/Members/Members';
+import { getUserProfile } from './firebase/auth';
 
 const App = () => {
   const { authDispatch: dispatch, authState: state } = useContext(context);
+  console.log(state);
   let navigate = useNavigate();
   useEffect(() => {
     dispatch({
@@ -30,9 +32,15 @@ const App = () => {
     });
     onAuthStateChanged(auth, user => {
       if (user) {
-        dispatch({
-          type: SIGNIN_SUCCESS,
-          payload: user,
+        getUserProfile(user.uid).then(snapshot => {
+          dispatch({
+            type: SIGNIN_SUCCESS,
+            payload: {
+              email: user.email,
+              uid: user.uid,
+              ...snapshot.data(),
+            },
+          });
         });
         navigate('', { replace: true });
       } else {
