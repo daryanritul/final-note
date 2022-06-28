@@ -1,0 +1,52 @@
+@import '../../styles/variables.css';
+
+.item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 100%;
+  padding: 10px;
+}
+.item {
+  display: flex;
+  border: 1px solid var(--charlie);
+  margin: 10px;
+  border-radius: 5px;
+  position: relative;
+}
+.item div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.item span {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(162, 162, 162);
+  margin: 0 10px;
+}
+.item h3 {
+  text-align: left;
+}
+.button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: flex-end;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.item:hover .button {
+  opacity: 1;
+}
+.button button {
+  width: 150px;
+  font-size: 12px;
+  padding: 5px;
+  background: var(--info);
+  color: #fff;
+  font-weight: normal;
+}
