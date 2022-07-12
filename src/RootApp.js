@@ -3,6 +3,7 @@ import App from './App';
 import { context } from './store/store';
 
 import authReducer from './store/reducers/authReducer';
+import searchReducer from './store/reducers/searchReducer';
 import notebookReducer from './store/reducers/notebookReducer';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -19,6 +20,12 @@ const authInitialState = {
     dob: null,
   },
 };
+const searchInitialState = {
+  loading: false,
+  error: null,
+  searchResult: [],
+  recentSearch: [],
+};
 
 const notebookInitialState = {
   loading: false,
@@ -32,10 +39,21 @@ const RootApp = () => {
     notebookReducer,
     notebookInitialState
   );
+  const [searchState, searchDispatch] = useReducer(
+    searchReducer,
+    searchInitialState
+  );
   return (
     <BrowserRouter>
       <context.Provider
-        value={{ authState, notebookState, authDispatch, notebookDispatch }}
+        value={{
+          authState,
+          notebookState,
+          searchState,
+          authDispatch,
+          searchDispatch,
+          notebookDispatch,
+        }}
       >
         <App />
       </context.Provider>
