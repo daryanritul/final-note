@@ -12,6 +12,7 @@ const Members = () => {
   const [listFilter, setListFilter] = useState('member');
   const [search, setSearch] = useState('');
   const { searchState: state, searchDispatch: dispatch } = useContext(context);
+  console.log(state);
   return (
     <div className={sty.members}>
       <div className={sty.search}>

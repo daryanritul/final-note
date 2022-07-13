@@ -5,7 +5,9 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, database, db } from './firebaseconfig';
+import { auth, database, db, storage } from './firebaseconfig';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { async } from '@firebase/util';
 export const authenticationSignUp = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
@@ -20,6 +22,16 @@ export const authenticationSignOut = () => {
 
 export const onAuthStateChange = () => {
   return onAuthStateChanged(auth);
+};
+
+export const uploadUserImage = async data => {
+  const imageRef = ref(storage, `userProfiles/${data.uid}.jpg`);
+  return await uploadBytes(imageRef, data.image);
+};
+
+export const getUserImageUrl = async uid => {
+  const imageRef = ref(storage, `userProfiles/${uid}.jpg`);
+  return await getDownloadURL(imageRef);
 };
 
 export const updateUserData = async data => {

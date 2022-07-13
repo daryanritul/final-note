@@ -4,6 +4,9 @@ import { context } from '../../store/store';
 import sty from './EditProfile.module.css';
 
 const EditProfile = ({ setEditOn, data }) => {
+  const [imageUrl, setImageUrl] = useState(
+    data.profileUrl ? data.profileUrl : ''
+  );
   const [name, setName] = useState(data.name ? data.name : '');
   const [designation, setDesignation] = useState(
     data.designation ? data.designation : ''
@@ -12,6 +15,7 @@ const EditProfile = ({ setEditOn, data }) => {
   const [bio, setBio] = useState(data.bio ? data.bio : '');
   const [gender, setGender] = useState(data.gender ? data.gender : '');
   const { authDispatch: dispatch, authState: state } = useContext(context);
+
   const onSumbitSave = () => {
     updateUserProfile({
       uid: data.uid,
@@ -20,6 +24,7 @@ const EditProfile = ({ setEditOn, data }) => {
       bio,
       gender,
       dob: dateOfBirth,
+      profileUrl: imageUrl,
     })(dispatch);
     setEditOn(false);
   };
@@ -28,6 +33,18 @@ const EditProfile = ({ setEditOn, data }) => {
     <div className={sty.modal}>
       <div className={sty.edit}>
         <label className={sty.editLabel}>Profile Details</label>
+        <div className={sty.editBox}>
+          <label className={sty.editLabel}>Profile Image</label>
+          <input
+            placeholder="Profile Image"
+            className={sty.editInput}
+            type="file"
+            name="Profile Picture"
+            onChange={event => {
+              setImageUrl(event.target.files[0]);
+            }}
+          />
+        </div>
         <div className={sty.editBox}>
           <label className={sty.editLabel}>Name</label>
           <input

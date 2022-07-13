@@ -15,7 +15,9 @@ const Profile = () => {
           <div className={sty.image}>
             <img
               src={
-                'https://images.unsplash.com/photo-1644982647869-e1337f992828?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80'
+                state.data.profileUrl
+                  ? state.data.profileUrl
+                  : 'https://images.unsplash.com/photo-1644982647869-e1337f992828?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80'
               }
               className={sty.img}
             />

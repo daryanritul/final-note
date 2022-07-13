@@ -3,6 +3,8 @@ import {
   authenticationSignOut,
   authenticationSignUp,
   updateUserData,
+  uploadUserImage,
+  getUserImageUrl,
 } from '../../firebase/auth';
 import {
   SIGNIN_ERROR,
@@ -74,10 +76,18 @@ export const authSignOut = () => dispatch => {
   });
 };
 
-export const updateUserProfile = data => dispatch => {
+export const updateUserProfile = data => async dispatch => {
   dispatch({
     type: UPDATE_PROFILE_LOADING,
   });
+  if (typeof data.profileUrl === 'object') {
+    await uploadUserImage({ uid: data.uid, image: data.profileUrl });
+    await getUserImageUrl(data.uid).then(url => {
+      console.log(url);
+      data['profileUrl'] = url;
+    });
+  }
+  console.log(data);
   updateUserData(data)
     .then(res => {
       dispatch({
