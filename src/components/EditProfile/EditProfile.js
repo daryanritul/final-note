@@ -16,12 +16,14 @@ const EditProfile = ({ setEditOn, data }) => {
   const [gender, setGender] = useState(data.gender ? data.gender : '');
   const { authDispatch: dispatch, authState: state } = useContext(context);
 
+  console.log(data);
   const onSumbitSave = () => {
     updateUserProfile({
       uid: data.uid,
       name,
       designation,
       bio,
+      email: data.email,
       gender,
       dob: dateOfBirth,
       profileUrl: imageUrl,

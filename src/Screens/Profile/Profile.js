@@ -1,12 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import EditProfile from '../../components/EditProfile/EditProfile';
 import { authSignOut } from '../../store/actions/auth';
 import { context } from '../../store/store';
 import sty from './Profile.module.css';
 
 const Profile = () => {
+  const routeState = useLocation();
   const [editOn, setEditOn] = useState(false);
-  const { authDispatch: dispatch, authState: state } = useContext(context);
+  const { authDispatch: dispatch, authState } = useContext(context);
+  const state =
+    routeState.state.prevPath === '/members' ? routeState.state : authState;
   return (
     <div className={sty.profile}>
       {editOn && <EditProfile setEditOn={setEditOn} data={state.data} />}
@@ -30,13 +34,20 @@ const Profile = () => {
             {state.data.bio}
           </p>
           <p>Date of Birth : {state.data.dob}</p>
-          <button onClick={() => setEditOn(!editOn)}>Edit Profile</button>
-          <button
-            className={sty.danger}
-            onClick={() => authSignOut()(dispatch)}
-          >
-            Sign Out
-          </button>
+          {routeState.state.prevPath !== '/members' && (
+            <button onClick={() => setEditOn(!editOn)}>Edit Profile</button>
+          )}
+          {routeState.state.prevPath !== '/members' && (
+            <button
+              className={sty.danger}
+              onClick={() => authSignOut()(dispatch)}
+            >
+              Sign Out
+            </button>
+          )}
+          {routeState.state.prevPath === '/members' && (
+            <button className={sty.danger}>Send Request</button>
+          )}
         </div>
         <div className={sty.data}>
           <div className={sty.miniData}>Basic Info</div>

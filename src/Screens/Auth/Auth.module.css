@@ -7,6 +7,10 @@
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  position: fixed;
+  z-index: 99;
+  background: var(--alpha);
+  top: 0px;
 }
 .block {
   background: var(--alpha);

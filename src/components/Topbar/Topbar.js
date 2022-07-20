@@ -5,10 +5,14 @@ import Logo from '../Logo/Logo';
 
 import { Search, ExpandMore } from '@styled-icons/material';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { context } from '../../store/store';
 const Topbar = () => {
   const { authDispatch: dispatch, authState: state } = useContext(context);
+  const navigate = useNavigate();
+  const onselectProfileHandler = () => {
+    navigate('/profile', { state: state });
+  };
   return (
     <div className={sty.bar}>
       <div className={sty.logo}>
@@ -22,7 +26,7 @@ const Topbar = () => {
           </div>
         </div>
       </div>
-      <NavLink to={'profile'} className={sty.profile}>
+      <div onClick={() => onselectProfileHandler()} className={sty.profile}>
         <div className={sty.proBox}>
           <img
             src={
@@ -32,10 +36,16 @@ const Topbar = () => {
             }
             className={sty.img}
           />
-          <div className={sty.username}>{state.data.name}</div>
+          {state.data.name.length <= 10 ? (
+            <div className={sty.username}>{state.data.name}</div>
+          ) : (
+            <div className={sty.username}>
+              {state.data.name.substring(0, 10)}...
+            </div>
+          )}
         </div>
         <ExpandMore className={sty.profileIcon} />
-      </NavLink>
+      </div>
     </div>
   );
 };
