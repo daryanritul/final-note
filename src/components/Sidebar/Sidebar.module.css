@@ -2,8 +2,8 @@
 
 .sidebar {
   border-right: 1px solid var(--charlie);
-  width: 70px;
-  height: calc(100vh - 60px);
+  width: 5%;
+  height: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;

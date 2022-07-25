@@ -1,0 +1,82 @@
+@import '../../styles/variables.css';
+
+.editorContainer {
+  height: 100%;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+}
+.pages {
+  width: 20%;
+  height: 100%;
+  border-right: 1px solid var(--charlie);
+  display: flex;
+  flex-direction: column;
+}
+.editor {
+  width: 80%;
+  height: 100%;
+}
+.note {
+  height: 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid var(--charlie);
+}
+.sortButton {
+  height: 25px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+
+.note p {
+  width: 60%;
+}
+.pagesHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.pageName {
+  padding: 3px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  color: rgb(150, 150, 150);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.pageName:hover {
+  color: var(--bright);
+}
+.pageIcon {
+  width: 30px;
+  padding: 3px;
+  color: var(--info);
+}
+.delete {
+  color: var(--danger);
+  width: 30px;
+  padding: 3px;
+  position: absolute;
+  right: 0px;
+  display: none;
+  transition: display ease-in-out 0.3s;
+}
+.pageName:hover .delete {
+  display: block;
+}
+.delete:hover {
+  transform: scale(0.8);
+}
+.editorCss {
+  width: 200px;
+  height: 200px;
+  background: red;
+}

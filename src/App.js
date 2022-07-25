@@ -56,20 +56,15 @@ const App = () => {
   } else
     return (
       <div className="app">
-        <div className="header">
-          <Topbar />
-        </div>
-        <div className="mainAppBody">
-          <Sidebar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="auth" element={<Auth />} />
-            <Route path="editor" element={<Editor />} />
-            <Route path="members" element={<Members />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="explore" element={<Explore />} />
-          </Routes>
-        </div>
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="auth" element={<Auth />} />
+          <Route path="editor" element={<Editor />} />
+          <Route path="members" element={<Members />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="explore" element={<Explore />} />
+        </Routes>
       </div>
     );
 };

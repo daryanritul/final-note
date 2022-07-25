@@ -36,13 +36,7 @@ const Topbar = () => {
             }
             className={sty.img}
           />
-          {state.data.name.length <= 10 ? (
-            <div className={sty.username}>{state.data.name}</div>
-          ) : (
-            <div className={sty.username}>
-              {state.data.name.substring(0, 10)}...
-            </div>
-          )}
+          <div className={sty.username}>{state.data.name}</div>
         </div>
         <ExpandMore className={sty.profileIcon} />
       </div>
