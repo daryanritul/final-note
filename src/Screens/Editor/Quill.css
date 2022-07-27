@@ -1,0 +1,79 @@
+.ql-container {
+  background: rgb(179, 179, 179);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.ql-toolbar {
+  border: none;
+  z-index: 99;
+  background: #fff;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.ql-toolbar > * {
+  padding: 5px 0px;
+}
+.ql-editor > * {
+  text-align: left;
+}
+.ql-editor {
+  background: #fff;
+  width: 65%;
+
+  color: #000;
+  height: 92%;
+  padding: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.ql-editor::-webkit-scrollbar {
+  width: 5px;
+}
+.ql-editor::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.ql-editor::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.ql-editor::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.ql-snow.ql-toolbar button,
+  .ql-snow .ql-toolbar button,
+  .ql-snow.ql-toolbar button,
+  .ql-snow .ql-toolbar button,
+  .ql-snow.ql-toolbar button.ql-active,
+  .ql-snow .ql-toolbar button.ql-active,
+  .ql-snow.ql-toolbar .ql-picker-label,
+  .ql-snow .ql-toolbar .ql-picker-label,
+  .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+  .ql-snow .ql-toolbar .ql-picker-label.ql-active,
+  /* .ql-snow.ql-toolbar .ql-picker-item,
+  .ql-snow .ql-toolbar .ql-picker-item, */
+  .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+  .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+  margin: 0 3px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.ql-snow.ql-toolbar button:hover,
+  .ql-snow .ql-toolbar button:hover,
+  .ql-snow.ql-toolbar button:focus,
+  .ql-snow .ql-toolbar button:focus,
+  .ql-snow.ql-toolbar button.ql-active,
+  .ql-snow .ql-toolbar button.ql-active,
+  .ql-snow.ql-toolbar .ql-picker-label:hover,
+  .ql-snow .ql-toolbar .ql-picker-label:hover,
+  .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+  .ql-snow .ql-toolbar .ql-picker-label.ql-active,
+  /* .ql-snow.ql-toolbar .ql-picker-item:hover,
+  .ql-snow .ql-toolbar .ql-picker-item:hover, */
+  .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+  .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+  color: #06c;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
