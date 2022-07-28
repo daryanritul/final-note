@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import sty from './BrowseModal.module.css';
 
@@ -9,16 +9,37 @@ import {
   Add,
   Delete,
 } from '@styled-icons/material';
-const BrowseModal = ({ type, close }) => {
+import { v4 } from 'uuid';
+import { context } from '../../store/store';
+import { saveNotebookHandler } from '../../store/actions/notebook';
+const BrowseModal = ({ type, close, pageData }) => {
   const fakeNames = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   const [input, setInput] = useState('');
   const [selected, setSelected] = useState(false);
-
+  const [desc, setDesc] = useState('');
+  const {
+    authState: state,
+    notebookState: nState,
+    notebookDispatch: dispatch,
+  } = useContext(context);
   const onSelecthandler = index => {
     setSelected(`${type} ${index + 1}`);
     setInput(`${type} ${index + 1}`);
   };
-
+  const createNewHandler = uid => {
+    const data = {
+      uid: v4(),
+      title: input,
+      lastUpdated: Date.now(),
+      pages: [
+        {
+          uid: v4(),
+          ...pageData,
+        },
+      ],
+    };
+    saveNotebookHandler(uid, data)(dispatch);
+  };
   return (
     <div className={sty.modal}>
       <div className={sty.modalHeader}>
@@ -27,24 +48,38 @@ const BrowseModal = ({ type, close }) => {
           <Close className={sty.icon} />
         </div>
       </div>
+
       <div className={sty.list}>
-        {fakeNames.map((note, index) => (
-          <div className={sty.item} onClick={() => onSelecthandler(index)}>
-            <div>
-              <StickyNote2 className={sty.icon} />
-              {type} {index + 1}
+        {nState.loading && <div>Loading...</div>}
+        {type !== 'Save' ? (
+          nState.notebookState?.data.map((note, index) => (
+            <div className={sty.item} onClick={() => onSelecthandler(index)}>
+              <div>
+                <StickyNote2 className={sty.icon} />
+                {type} {index + 1}
+              </div>
+              {type !== 'Pages' && <div className={sty.subtitle}>Pages 10</div>}
+              <div className={sty.iconBox} onClick={() => close(false)}>
+                <Delete className={sty.icon} />
+              </div>
             </div>
-            {type !== 'Pages' && <div className={sty.subtitle}>Pages 10</div>}
-            <div className={sty.iconBox} onClick={() => close(false)}>
-              <Delete className={sty.icon} />
-            </div>
+          ))
+        ) : (
+          <div className={sty.desc}>
+            <label>Notebook Description</label>
+            <textarea
+              placeholder="Notebook Description Here"
+              value={desc}
+              onChange={e => setDesc(e.target.value)}
+            />
           </div>
-        ))}
+        )}
       </div>
+
       <div className={sty.footer}>
         <div className={sty.inputBox}>
           <input
-            placeholder={`Search or Create New`}
+            placeholder={`Notebook Name `}
             className={sty.input}
             value={input}
             onChange={event => setInput(event.target.value)}
@@ -55,9 +90,11 @@ const BrowseModal = ({ type, close }) => {
             onClick={() => (setInput(''), setSelected(false))}
           />
         </div>
-        <div className={sty.btn}>
-          <div>Search</div>
-        </div>
+        {type !== 'Save' && (
+          <div className={sty.btn}>
+            <div>Search</div>
+          </div>
+        )}
         <div className={sty.btn}>
           {selected ? (
             type === 'Save To' ? (
@@ -66,7 +103,9 @@ const BrowseModal = ({ type, close }) => {
               <div>Open</div>
             )
           ) : (
-            <div>Create New</div>
+            <div onClick={() => createNewHandler(state.data.uid)}>
+              Create New {type === 'Save' && '& Save'}
+            </div>
           )}
         </div>
       </div>

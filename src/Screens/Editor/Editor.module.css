@@ -7,26 +7,22 @@
   flex-direction: row;
 }
 .pages {
-  width: 15%;
-  border-right: 1px solid var(--charlie);
+  width: 16%;
   display: flex;
   flex-direction: column;
   position: absolute;
   background: var(--alpha);
   z-index: 99;
   top: 80px;
-  bottom: 10px;
+  bottom: 0px;
   transition: transform 0.3s ease-in-out;
   transform-origin: left;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  border-radius: 5px;
 }
 .pages.fullPage {
-  left: calc(5vw + 5px);
+  left: calc(5vw);
 }
 .pages.sortPage {
-  left: 10px;
+  left: 0px;
 }
 .pages.showPage {
   transform: scale(0, 1);
@@ -53,11 +49,13 @@
   width: 100%;
 }
 .note {
-  height: 5%;
+  height: 4%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  font-weight: bold;
+  background: var(--alpha);
+  color: #fff;
   border-bottom: 1px solid var(--charlie);
 }
 .sortButton {
@@ -70,13 +68,17 @@
 }
 
 .note p {
-  width: 60%;
+  padding: 0 5px;
 }
 .pagesHead {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
+  padding: 5px 0;
+  padding-left: 10px;
+}
+.addBtn {
+  background: red;
 }
 .pageName {
   padding: 3px;
@@ -126,7 +128,7 @@
   justify-content: space-between;
   background: var(--alpha);
 }
-.pageName {
+.pageTitle {
   font-weight: bold;
   width: 200px;
   left: 0px;
@@ -206,6 +208,7 @@
   background: var(--danger);
   color: #fff;
   height: 100%;
+  margin-right: 0px;
 }
 .closeBtn > *,
 .headButton:nth-child(5) > * {
@@ -225,4 +228,21 @@
 }
 .headButton:hover::after {
   transform: scale(1);
+}
+.welcome {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.welcomeBtn {
+  display: flex;
+}
+.welcomeBtn > * {
+  background: var(--info);
+  padding: 10px;
+  font-size: 18px;
+  margin: 10px;
+  cursor: pointer;
 }

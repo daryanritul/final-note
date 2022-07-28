@@ -80,6 +80,7 @@
   align-items: center;
   padding: 10px;
   background: rgb(29, 29, 29);
+  justify-content: center;
 }
 .footer > * {
   border-radius: 3px;
@@ -126,4 +127,15 @@
 .btn:hover {
   background: #fff;
   color: var(--info);
+}
+.desc {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+.desc label {
+  padding: 5px;
+}
+.desc textarea {
+  height: 50%;
 }

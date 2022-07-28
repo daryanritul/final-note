@@ -31,6 +31,11 @@ const notebookInitialState = {
   loading: false,
   error: null,
   data: [],
+  activeNotebook: {
+    uid: 'none',
+    title: 'Untitled Notebook',
+    pages: [],
+  },
 };
 
 const RootApp = () => {
