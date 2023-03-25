@@ -21,7 +21,7 @@ const authInitialState = {
   },
 };
 const searchInitialState = {
-  loading: false,
+  loading: false,   
   error: null,
   searchResult: [],
   recentSearch: [],

@@ -22,6 +22,8 @@ import BrowseModal from '../../components/BrowseModal/BrowseModal';
 import { context } from '../../store/store';
 import { saveNotebookHandler } from '../../store/actions/notebook';
 import { v4 } from 'uuid';
+import NotebookBrowser from '../../components/NotebookBrowser/NotebookBrowser';
+import Spinner from '../../components/Spinner/Spinner';
 const pageData = ['PageONe', 'Page2', 'asdasda', 'asas'];
 
 const modules = {
@@ -29,10 +31,10 @@ const modules = {
     ['bold', 'italic', 'underline', 'strike'], // toggled buttons
     ['blockquote', 'code-block'],
 
-    // [{ header: 1 }, { header: 2 }], // custom button values
+    [{ header: 1 }, { header: 2 }], // custom button values
     [{ list: 'ordered' }, { list: 'bullet' }],
     [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
-    // [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+    [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
     [{ direction: 'rtl' }], // text direction
 
     [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
@@ -48,8 +50,11 @@ const modules = {
   ],
 };
 const Editor = () => {
-  const { notebookState: state, notebookDispatch: dispatch } =
-    useContext(context);
+  const {
+    notebookState: state,
+    notebookDispatch: dispatch,
+    authState: aState,
+  } = useContext(context);
   const [data, setData] = useState('');
   const [fullScreen, setFullScreen] = useState(false);
   const [explorer, setExplorer] = useState(false);
@@ -108,7 +113,7 @@ const Editor = () => {
         noteData = state.activeNotebook;
         noteData.pages[activePage].data = data;
       }
-      saveNotebookHandler(state.activeNotebook.uid, noteData)(dispatch);
+      saveNotebookHandler(aState.data.uid, noteData)(dispatch);
     }
   };
   const onNewHandler = () => {
@@ -123,11 +128,11 @@ const Editor = () => {
       ...state.activeNotebook,
       pages: state.activeNotebook.pages.filter(page => page.uid !== id),
     };
-    saveNotebookHandler(state.activeNotebook.uid, noteData)(dispatch);
+    saveNotebookHandler(aState.data.uid, noteData)(dispatch);
   };
   return (
     <div className={sty.editorContainer}>
-      {menuOption && (
+      {/* {menuOption && (
         <BrowseModal
           type={menuOption}
           close={setMenuOption}
@@ -136,6 +141,22 @@ const Editor = () => {
               name: pageName,
               data: data,
             }
+          }
+        />
+      )} */}
+      {menuOption && (
+        <NotebookBrowser
+          close={setMenuOption}
+          pageData={
+            menuOption === 'Save'
+              ? [
+                  {
+                    uid: v4(),
+                    name: pageName,
+                    data: data,
+                  },
+                ]
+              : []
           }
         />
       )}
@@ -186,7 +207,20 @@ const Editor = () => {
           <div className={sty.editorHead}>
             <div className={sty.headBox}>
               <div onClick={() => setMenuOption('Notebooks')}>Notebooks</div>
-              <div onClick={() => setMenuOption('Pages')}>Pages</div>
+              <div className={sty.newPage}>
+                New
+                <div className={sty.dropDown}>
+                  <div className={sty.dropItem} onClick={() => onNewHandler()}>
+                    Page
+                  </div>
+                  <div
+                    className={sty.dropItem}
+                    onClick={() => setMenuOption(true)}
+                  >
+                    Notebook
+                  </div>
+                </div>
+              </div>
               <div
                 className={`${!explorer && sty.activeHead}`}
                 onClick={() => setExplorer(!explorer)}
@@ -245,14 +279,21 @@ const Editor = () => {
               </div>
             </div>
           </div>
+
           <div className={`${sty.myQuill} `}>
-            <ReactQuill
-              theme="snow"
-              value={data}
-              onChange={setData}
-              modules={modules}
-              className={sty.myEditor}
-            />
+            {state.loading ? (
+              <div className={sty.spinner}>
+                <Spinner />
+              </div>
+            ) : (
+              <ReactQuill
+                theme="snow"
+                value={data}
+                onChange={setData}
+                modules={modules}
+                className={sty.myEditor}
+              />
+            )}
           </div>
         </div>
       ) : (

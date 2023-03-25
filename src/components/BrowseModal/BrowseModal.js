@@ -11,9 +11,11 @@ import {
 } from '@styled-icons/material';
 import { v4 } from 'uuid';
 import { context } from '../../store/store';
-import { saveNotebookHandler } from '../../store/actions/notebook';
+import {
+  saveNotebookHandler,
+  selectNotebook,
+} from '../../store/actions/notebook';
 const BrowseModal = ({ type, close, pageData }) => {
-  const fakeNames = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   const [input, setInput] = useState('');
   const [selected, setSelected] = useState(false);
   const [desc, setDesc] = useState('');
@@ -22,9 +24,14 @@ const BrowseModal = ({ type, close, pageData }) => {
     notebookState: nState,
     notebookDispatch: dispatch,
   } = useContext(context);
-  const onSelecthandler = index => {
-    setSelected(`${type} ${index + 1}`);
-    setInput(`${type} ${index + 1}`);
+  console.log(' =>', nState);
+  const onSelecthandler = notebook => {
+    setSelected(notebook);
+    setInput(notebook.title);
+  };
+  const openNotebook = () => {
+    selectNotebook(selected)(dispatch);
+    close(false);
   };
   const createNewHandler = uid => {
     const data = {
@@ -52,13 +59,15 @@ const BrowseModal = ({ type, close, pageData }) => {
       <div className={sty.list}>
         {nState.loading && <div>Loading...</div>}
         {type !== 'Save' ? (
-          nState.notebookState?.data.map((note, index) => (
-            <div className={sty.item} onClick={() => onSelecthandler(index)}>
+          nState.data.map((note, index) => (
+            <div className={sty.item} onClick={() => onSelecthandler(note)}>
               <div>
                 <StickyNote2 className={sty.icon} />
-                {type} {index + 1}
+                {note.title}
               </div>
-              {type !== 'Pages' && <div className={sty.subtitle}>Pages 10</div>}
+              {type !== 'Pages' && (
+                <div className={sty.subtitle}>{note.pages.length}</div>
+              )}
               <div className={sty.iconBox} onClick={() => close(false)}>
                 <Delete className={sty.icon} />
               </div>
@@ -100,7 +109,7 @@ const BrowseModal = ({ type, close, pageData }) => {
             type === 'Save To' ? (
               <div>Save</div>
             ) : (
-              <div>Open</div>
+              <div onClick={() => openNotebook()}>Open</div>
             )
           ) : (
             <div onClick={() => createNewHandler(state.data.uid)}>

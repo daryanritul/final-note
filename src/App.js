@@ -25,6 +25,7 @@ import { getUserProfile } from './firebase/auth';
 const App = () => {
   const { authDispatch: dispatch, authState: state } = useContext(context);
   let navigate = useNavigate();
+
   useEffect(() => {
     dispatch({
       type: SIGNIN_LOADING,
