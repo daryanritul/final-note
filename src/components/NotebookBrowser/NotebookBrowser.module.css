@@ -1,0 +1,172 @@
+@import '../../styles/variables.css';
+
+.modal {
+  position: absolute;
+  background: var(--alpha);
+  width: 800px;
+  height: 500px;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  top: 0px;
+  bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.538);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.header {
+  background: var(--alpha);
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+}
+.icon {
+  height: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+.icon:hover {
+  background: var(--danger);
+}
+.icon > * {
+  height: 100%;
+}
+.body {
+  height: 70%;
+  display: flex;
+  width: 100%;
+}
+.notes {
+  width: 25%;
+  height: 100%;
+  border-right: 1px solid var(--charlie);
+  display: flex;
+  flex-direction: column;
+}
+.pages {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.notes label,
+.pages label {
+  background: rgb(44, 44, 45);
+  width: 100%;
+  padding: 3px;
+  font-size: 12px;
+}
+.list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  overflow-y: scroll;
+}
+.list::-webkit-scrollbar {
+  width: 5px;
+}
+.list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.list::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.item {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  width: 100%;
+  cursor: pointer;
+  margin: 3px 0px;
+}
+.item .icon {
+  padding: 0px;
+  margin: 0px 10px;
+  pointer-events: none;
+}
+.item.active {
+  background: #fff;
+  color: #000;
+}
+.item:hover {
+  background: var(--info);
+  color: #fff;
+}
+.footer {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  background: rgba(0, 0, 0, 0.439);
+}
+.inputs {
+  width: 80%;
+  border: 1px solid var(--charlie);
+  border-bottom: 0px;
+  border-left: 0px;
+}
+.input {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+}
+.input label {
+  padding: 0px 5px;
+  width: 20%;
+  text-align: right;
+}
+.input input {
+  padding: 5px;
+  width: 80%;
+  color: var(--alpha);
+  border-radius: 3px;
+}
+.buttons {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-top: 1px solid var(--charlie);
+}
+
+.buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 30px;
+  display: flex;
+  background: var(--info);
+  color: #fff;
+}
+.buttons button.disable {
+  background: grey;
+  pointer-events: none;
+}
+.buttons button.cancel {
+  background: var(--danger);
+}
+.item.noSelect {
+  pointer-events: none;
+}
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}

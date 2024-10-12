@@ -1,0 +1,14 @@
+:root {
+  --alpha: #202124;
+  --charlie: #93999e;
+  --bravo: #8ab4f8;
+
+  --light: #e8eaed;
+  --bright: #fff;
+
+  --danger: #ea4335;
+  --warning: #fbbc04;
+  --success: #34a753;
+  --success-dark: #206833;
+  --info: #1a73e8;
+}

@@ -1,0 +1,58 @@
+@import '../../styles/variables.css';
+
+.loading {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+.loading__logo {
+  width: 70px;
+  height: 70px;
+}
+.icon {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
+.loading__title {
+  padding: 10px;
+  padding-bottom: 5px;
+  color: var(--light);
+  font-size: 18px;
+}
+.loading__title span {
+  font-size: inherit;
+  color: var(--warning);
+  font-family: inherit;
+}
+.loading__line {
+  width: 200px;
+  height: 3px;
+  background: var(--danger);
+  position: relative;
+  border-radius: 100px;
+}
+.loading__line::after {
+  content: '';
+  width: 40px;
+  height: 3px;
+  position: absolute;
+  background: var(--warning);
+  border-radius: 100px;
+  animation: loading 2s infinite ease;
+}
+@keyframes loading {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(160px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

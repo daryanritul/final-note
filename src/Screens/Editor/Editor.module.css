@@ -1,0 +1,257 @@
+@import '../../styles/variables.css';
+
+.editorContainer {
+  height: 100%;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+}
+.pages {
+  width: 16%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background: var(--alpha);
+  z-index: 99;
+  top: 80px;
+  bottom: 0px;
+  transition: transform 0.3s ease-in-out;
+  transform-origin: left;
+}
+.pages.fullPage {
+  left: calc(5vw);
+}
+.pages.sortPage {
+  left: 0px;
+}
+.pages.showPage {
+  transform: scale(0, 1);
+}
+.pages.hidePages {
+  transform: scale(0);
+}
+.editor {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  transition: 0.3s ease-in-out;
+  transform-origin: bottom;
+}
+.myQuill {
+  width: 100%;
+  height: 97%;
+  background: #fff;
+  transform-origin: left;
+}
+.editor.fullScreen {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+}
+.note {
+  height: 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  background: var(--alpha);
+  color: #fff;
+  border-bottom: 1px solid var(--charlie);
+}
+.sortButton {
+  height: 25px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+
+.note p {
+  padding: 0 5px;
+}
+.pagesHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  padding-left: 10px;
+}
+.addBtn {
+  background: red;
+}
+.pageName {
+  padding: 3px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  color: rgb(150, 150, 150);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.pageName:hover {
+  color: var(--bright);
+}
+.pageIcon {
+  width: 30px;
+  padding: 3px;
+  color: var(--info);
+}
+.delete {
+  color: var(--danger);
+  width: 30px;
+  padding: 3px;
+  position: absolute;
+  right: 0px;
+  display: none;
+  transition: display ease-in-out 0.3s;
+}
+.pageName:hover .delete {
+  display: block;
+}
+.delete:hover {
+  transform: scale(0.8);
+}
+
+.myEditor {
+  height: calc(100% - 52px);
+}
+.editorHead {
+  color: #000;
+  display: flex;
+  display: flex;
+  width: 100%;
+  font-size: 13px;
+  height: 3%;
+  align-items: center;
+  padding-left: 5px;
+  justify-content: space-between;
+  background: var(--alpha);
+}
+.pageTitle {
+  font-weight: bold;
+  width: 200px;
+  left: 0px;
+  right: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 9999;
+  background: transparent;
+  cursor: text;
+}
+
+.headBox {
+  display: flex;
+}
+.headBox > * {
+  padding: 0px 10px;
+  margin: 0px 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 13px;
+  position: relative;
+}
+.headBox > *.activeHead {
+  background: #fff;
+  color: #000;
+}
+.headBox > *:hover {
+  background: #fff;
+  color: #000;
+}
+.headButton {
+  background: var(--light);
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  margin: 0 3px;
+  cursor: pointer;
+  padding: 0px;
+  position: relative;
+}
+.headBtnBox {
+  display: flex;
+  height: 100%;
+}
+.dropDown {
+  position: absolute;
+  background: #fff;
+  color: var(--alpha);
+  z-index: 99;
+  padding: 10px;
+  left: 0px;
+  width: 150px;
+  transform: scale(1, 0);
+  transition: transform 0.2s ease-in;
+  transform-origin: top;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.newPage:hover .dropDown,
+.save:hover .dropDown {
+  transform: scale(1);
+}
+.dropItem {
+  padding: 10px;
+}
+.dropItem:hover {
+  background: rgba(123, 123, 123, 0.462);
+}
+.icon {
+  width: 20px;
+  color: var(--alpha);
+}
+
+.headButton:nth-child(5),
+.closeBtn {
+  background: var(--danger);
+  color: #fff;
+  height: 100%;
+  margin-right: 0px;
+}
+.closeBtn > *,
+.headButton:nth-child(5) > * {
+  color: #fff;
+}
+.headButton::after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.315);
+  transform: scale(1, 0);
+  transform-origin: bottom;
+  transition: transform 0.2s ease-in-out;
+}
+.headButton:hover::after {
+  transform: scale(1);
+}
+.welcome {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.welcomeBtn {
+  display: flex;
+}
+.welcomeBtn > * {
+  background: var(--info);
+  padding: 10px;
+  font-size: 18px;
+  margin: 10px;
+  cursor: pointer;
+}
+.spinner {
+  background: rgba(0, 0, 0, 0.088);
+  z-index: 9999;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

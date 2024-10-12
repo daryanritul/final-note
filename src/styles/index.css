@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,700;1,400;1,700&display=swap');
+
+@import './variables.css';
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Nunito', sans-serif;
+  background: var(--alpha);
+  color: var(--light);
+}
+button,
+input {
+  font-family: 'Nunito', sans-serif;
+  color: var(--light);
+  border: 0px;
+}
+input:focus {
+  outline: none;
+}
+
+/* APP  CSS */
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
